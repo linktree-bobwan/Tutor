@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Dwi pandu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* CSS Global & Reset */
+        :root {
+            --color-black: #262626; /* Dark Grey / Near Black */
+            --color-white: #FFFFFF;
+            --color-light-grey: #F5F5F5;
+            --color-medium-grey: #D1D5DB; /* For borders/dividers */
+            --color-darker-grey: #4B5563; /* For secondary text */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--color-light-grey);
+            color: var(--color-black);
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        .container {
+            max-width: 1024px; /* Slightly wider max-width */
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--color-white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom-left-radius: 8px; /* Rounded corners */
+            border-bottom-right-radius: 8px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--color-black);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--color-darker-grey);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-black);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-black);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Navigation (Hamburger Menu for small screens) */
+        .nav-toggle {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .nav-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-black);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--color-white);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                padding: 1rem 0;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+        }
+
+
+        /* --- Sections General Styling --- */
+        section {
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            background-color: var(--color-white);
+            border-radius: 12px; /* Consistent rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--color-black);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            text-align: left;
+            border-bottom: 2px solid var(--color-medium-grey);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh; /* Make hero section taller */
+            padding: 6rem 0;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--color-white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            flex-shrink: 0;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #home h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        #home h2 span {
+            color: var(--color-black); /* Keeping emphasis consistent */
+        }
+
+        #home p {
+            font-size: 1.25rem;
+            color: var(--color-darker-grey);
+            margin-bottom: 1rem;
+        }
+
+        #home p.tagline {
+            font-size: 1.1rem;
+            color: var(--color-medium-grey);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #4B4B4B; /* Slightly lighter black on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Media queries for Hero responsiveness */
+        @media (min-width: 769px) {
+            #home {
+                flex-direction: row;
+                text-align: left;
+                justify-content: center;
+                gap: 3rem;
+            }
+            .profile-img {
+                margin-bottom: 0;
+            }
+            #home h2 {
+                font-size: 4rem;
+            }
+        }
+
+
+        /* --- About Section --- */
+        #about .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-black);
+        }
+
+        #about p {
+            margin-bottom: 1rem;
+        }
+
+        /* --- Skills Section --- */
+        #skills .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        #skills .skill-category h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-black);
+        }
+
+        #skills .skill-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        #skills .skill-list li {
+            background-color: var(--color-light-grey);
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-black);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        #skills .skill-list li:hover {
+            transform: translateY(-2px);
+        }
+
+        #skills .skill-list li::before {
+            content: '•';
+            color: var(--color-black); /* Bullet color */
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            #skills .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* --- Portfolio Section --- */
+        #portfolio .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--color-medium-grey);
+        }
+
+        .project-card-content {
+            padding: 1.5rem;
+        }
+
+        .project-card h4 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-black);
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--color-darker-grey);
+            margin-bottom: 1rem;
+        }
+
+        .project-card .project-link {
+            display: inline-block;
+            color: var(--color-black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-card .project-link:hover {
+            color: var(--color-darker-grey);
+        }
+
+        /* --- Contact Section --- */
+        #contact .contact-intro {
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-black);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-black);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--color-medium-grey);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--color-black);
+            background-color: var(--color-light-grey);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-black);
+            box-shadow: 0 0 0 2px rgba(38, 38, 38, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn-primary {
+            width: fit-content;
+            align-self: center;
+            margin-top: 1rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: var(--color-darker-grey);
+            display: flex; /* Make it a flex container */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            gap: 0.5rem; /* Space between items */
+        }
+
+        .contact-info a {
+            color: var(--color-black);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex; /* Allow icon and text to sit together */
+            align-items: center; /* Align icon and text vertically */
+            gap: 0.5rem; /* Space between icon and text */
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--color-black);
+            color: var(--color-light-grey);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-direction: column; /* Stack social links vertically */
+            align-items: center; /* Center them horizontally */
+        }
+
+        .social-link {
+            display: flex; /* Allow icon and text/link to sit together */
+            align-items: center; /* Align icon and text vertically */
+            gap: 0.5rem; /* Space between icon and text */
+            color: var(--color-darker-grey); /* Text color for social links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--color-white);
+        }
+
+        .social-link svg, .social-link i { /* Target Font Awesome icons too */
+            width: 24px;
+            height: 24px;
+            fill: var(--color-darker-grey);
+            color: var(--color-darker-grey); /* For Font Awesome */
+            transition: fill 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover svg, .social-link:hover i {
+            fill: var(--color-white);
+            color: var(--color-white);
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+        .my-4 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#home" class="logo">Dwi pandu</a>
+            <div class="nav-toggle" id="navToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Saya</a></li>
+                    <li><a href="#skills">Keahlian</a></li>
+                    <li><a href="#portfolio">Portofolio</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="home">
+            <div class="profile-img">
+                <img src="https://i.supaimg.com/ef7d5c50-5c6d-4d1b-96ea-f2cb9376b50f.jpg" alt="Foto Profil Anda">
+            </div>
+            <div>
+                <h2>Halo, saya <span class="text-black">Dwi pandu</span></h2>
+                <p>Seorang <span style="font-weight: 600;">Pengembang Web / Desainer Grafis</span>.</p>
+                <p class="tagline">Saya menciptakan solusi digital yang indah dan fungsional.</p>
+                <a href="#contact" class="btn-primary">Hubungi Saya</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h3>Tentang Saya</h3>
+                <div class="content">
+                    <p>
+                        Saya adalah seorang profesional di bidang <span style="font-weight: 500;"> teknologi informasi / desain</span>.
+                        Dengan pengalaman selama <span style="font-weight: 500;">3</span> tahun, saya bersemangat untuk menciptakan solusi yang inovatif
+                        dan berdampak. Saya memiliki ketertarikan yang kuat pada <span style="font-weight: 500;">UI/UX,
+                        pengembangan back-end, atau strategi konten]</span>.
+                    </p>
+                    <p>
+                        Dalam pekerjaan saya, saya selalu berusaha untuk menggabungkan kreativitas dengan metodologi yang terstruktur
+                        untuk menghasilkan produk yang tidak hanya terlihat bagus tetapi juga sangat fungsional dan mudah digunakan.
+                        Saya percaya pada pembelajaran berkelanjutan dan selalu mencari cara baru untuk meningkatkan keahlian saya.
+                    </p>
+                    <p>
+                        Di luar pekerjaan, saya menikmati <span style="font-weight: 500;">[bersepedah, memfoto objek pemandangan, dan bermain game]</span>. Saya antusias untuk berkolaborasi dalam proyek-proyek menarik dan membantu
+                        mewujudkan ide-ide menjadi kenyataan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h3>Keahlian</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Keahlian Teknis</h4>
+                        <ul class="skill-list">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>React.js</li>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                            <li>Git</li>
+                            <li>Figma</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Keahlian Non-Teknis</h4>
+                        <ul class="skill-list">
+                            <li>Komunikasi</li>
+                            <li>Kerja Tim</li>
+                            <li>Penyelesaian Masalah</li>
+                            <li>Adaptabilitas</li>
+                            <li>Manajemen Waktu</li>
+                            <li>Kreativitas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h3>Portofolio</h3>
+                <div class="portfolio-grid">
+                    <div class="project-card">
+                        <img src="https://placehold.co/300x200/D1D5DB/4B5563?text=Proyek+1" alt="Proyek Website E-commerce">
+                        <div class="project-card-content">
+                            <h4>Proyek Website E-commerce</h4>
+                            <p>Mengembangkan platform e-commerce responsif dengan fitur keranjang belanja dan pembayaran.</p>
+                            <a href="https://bobwan-pixel.github.io/Tokoku/" target="_blank" rel="noopener noreferrer" class="project-link">Lihat Proyek &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/300x200/D1D5DB/4B5563?text=Proyek+2" alt="Aplikasi Manajemen Tugas">
+                        <div class="project-card-content">
+                            <h4>Aplikasi Manajemen Tugas</h4>
+                            <p>Membangun aplikasi web untuk mengelola tugas harian dengan antarmuka yang intuitif.</p>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">Lihat Proyek &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/300x200/D1D5DB/4B5563?text=Proyek+3" alt="Desain Aplikasi Mobile">
+                        <div class="project-card-content">
+                            <h4>Desain Aplikasi Mobile</h4>
+                            <p>Mendesain antarmuka pengguna (UI) dan pengalaman pengguna (UX) untuk aplikasi mobile kesehatan.</p>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">Lihat Proyek &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://placehold.co/300x200/D1D5DB/4B5563?text=Proyek+4" alt="Sistem Reservasi Online">
+                        <div class="project-card-content">
+                            <h4>Sistem Reservasi Online</h4>
+                            <p>Mengimplementasikan sistem reservasi online dengan backend yang kuat dan UI yang ramah pengguna.</p>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="project-link">Lihat Proyek &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h3>Kontak</h3>
+                <p class="contact-intro">
+                    Tertarik untuk berkolaborasi? Jangan ragu untuk menghubungi saya!
+                </p>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Anda</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan Anda</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Kirim Pesan</button>
+                </form>
+                <div class="contact-info">
+                    <p class="mt-8">Atau hubungi saya langsung:</p>
+                    <a href="mailto:terepandu@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i> terepandu@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dwi pandu. Hak Cipta Dilindungi.</p>
+            <div class="social-links">
+                <a href="https://wa.me/+628990673350" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.instagram.com/dwipandu013/profilecard/?igsh=dzc2YnJ0cmExMHY3" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript untuk hamburger menu
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>>
